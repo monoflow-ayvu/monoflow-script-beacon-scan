@@ -1,6 +1,6 @@
 {
   "name": "monoflow-script-beacon-scan",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Escaneia e salva os metadatos dos beacons.",
   "settingsSchema": {},
   "license": "MIT",
