@@ -1,5 +1,5 @@
 {
-  "name": "monoflow-script-beacon-scan",
+  "name": "beacon-scan",
   "version": "0.2.0",
   "description": "Escaneia e salva os metadatos dos beacons.",
   "settingsSchema": {},
@@ -37,6 +37,7 @@
     "@types/firebase": "3.2.1",
     "@types/jest": "28.1.6",
     "@types/lodash": "4.14.182",
+    "@types/node": "^18.6.5",
     "@types/uuid": "8.3.4",
     "babel-loader": "8.2.5",
     "brotli-webpack-plugin": "1.1.0",
