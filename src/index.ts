@@ -71,7 +71,7 @@ function getBeaconCol() {
 function findBeaconName(mac: string) {
   const prettyMac = mac.toLocaleUpperCase();
   const col = getBeaconCol()
-  return col?.get(prettyMac)?.data?.name;
+  return col?.get(prettyMac)?.data?.name || '';
 }
 
 messages.on('onInit', () => {
@@ -99,7 +99,7 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
       return {
         mac: b.mac,
         distance: getIBeaconDistance(ibeaconFrame.tx, b.rssi),
-        name: findBeaconName(b.mac),
+        name: findBeaconName(b.mac) || '',
       }
     }) ?? []
   const closestBeacon = nearBeacons.sort((a, b) => a.distance - b.distance)?.[0];
