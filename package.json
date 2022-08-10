@@ -2,7 +2,92 @@
   "name": "beacon-scan",
   "version": "0.3.0",
   "description": "Escaneia e salva os metadatos dos beacons.",
-  "settingsSchema": {},
+  "settingsSchema": {
+    "display": "form",
+    "settings": {
+      "pdf": {
+        "id": "1ec0f8ee-6685-5d98-a847-26f67b67d6f0",
+        "src": "https://files.form.io/pdf/5692b91fd1028f01000407e3/file/1ec0f8ee-6685-5d98-a847-26f67b67d6f0"
+      }
+    },
+    "components": [
+      {
+        "label": "Habilitar display do beacon mais perto (BEACON CHECK)",
+        "tableView": false,
+        "key": "enableBeaconCheck",
+        "type": "checkbox",
+        "input": true,
+        "defaultValue": false
+      },
+      {
+        "key": "beaconSetConf",
+        "conditional": {
+          "show": true,
+          "when": "enableBeaconCheck",
+          "eq": "true"
+        },
+        "type": "fieldset",
+        "label": "Field Set",
+        "input": false,
+        "tableView": false,
+        "components": [
+          {
+            "label": "Table1",
+            "cellAlignment": "left",
+            "key": "table1",
+            "type": "table",
+            "numRows": 1,
+            "numCols": 2,
+            "input": false,
+            "tableView": false,
+            "rows": [
+              [
+                {
+                  "components": [
+                    {
+                      "label": "Tags",
+                      "tooltip": "Se o dispositivo ou login tiver um desses tags, a função BEACON CHECK vai se habilitar.",
+                      "tableView": false,
+                      "storeas": "array",
+                      "validate": {
+                        "required": true
+                      },
+                      "key": "tags",
+                      "type": "tags",
+                      "input": true
+                    }
+                  ]
+                },
+                {
+                  "components": [
+                    {
+                      "label": "ID Page",
+                      "tooltip": "ID da Page para abrir ao ter modo CHECK ativo.",
+                      "tableView": true,
+                      "validate": {
+                        "required": true
+                      },
+                      "key": "pageId",
+                      "type": "textfield",
+                      "input": true
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "type": "button",
+        "label": "Submit",
+        "key": "submit",
+        "disableOnInvalid": true,
+        "input": true,
+        "tableView": false
+      }
+    ]
+  },
   "license": "MIT",
   "private": true,
   "scripts": {
