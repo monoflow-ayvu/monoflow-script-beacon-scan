@@ -26,49 +26,27 @@
         "tableView": false,
         "components": [
           {
-            "label": "Table1",
-            "cellAlignment": "left",
-            "key": "table1",
-            "type": "table",
-            "numRows": 1,
-            "numCols": 2,
-            "input": false,
+            "label": "Tags",
+            "tooltip": "Se o dispositivo ou login tiver um desses tags, a função BEACON CHECK vai se habilitar.",
             "tableView": false,
-            "rows": [
-              [
-                {
-                  "components": [
-                    {
-                      "label": "Tags",
-                      "tooltip": "Se o dispositivo ou login tiver um desses tags, a função BEACON CHECK vai se habilitar.",
-                      "tableView": false,
-                      "storeas": "array",
-                      "validate": {
-                        "required": true
-                      },
-                      "key": "tags",
-                      "type": "tags",
-                      "input": true
-                    }
-                  ]
-                },
-                {
-                  "components": [
-                    {
-                      "label": "ID Page",
-                      "tooltip": "ID da Page para abrir ao ter modo CHECK ativo.",
-                      "tableView": true,
-                      "validate": {
-                        "required": true
-                      },
-                      "key": "pageId",
-                      "type": "textfield",
-                      "input": true
-                    }
-                  ]
-                }
-              ]
-            ]
+            "storeas": "array",
+            "validate": {
+              "required": true
+            },
+            "key": "tags",
+            "type": "tags",
+            "input": true
+          },
+          {
+            "label": "ID Page",
+            "tooltip": "ID da Page para abrir ao ter modo CHECK ativo.",
+            "tableView": true,
+            "validate": {
+              "required": true
+            },
+            "key": "pageId",
+            "type": "textfield",
+            "input": true
           }
         ]
       },
