@@ -64,6 +64,20 @@ function tryOpenPage(pageId: string) {
   (platform as unknown as { goToPage: (pageId: string) => void })?.goToPage?.(pageId);
 }
 
+function getBeaconCol() {
+  return env.project?.collectionsManager.ensureExists<{mac: string; name?: string}>('beacon', 'Beacon');
+}
+
+function findBeaconName(mac: string) {
+  const prettyMac = mac.toLocaleUpperCase();
+  const col = getBeaconCol()
+  return col.get(prettyMac).data.name;
+}
+
+messages.on('onInit', () => {
+  getBeaconCol();
+});
+
 MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
   env.project?.saveEvent(ev);
 
@@ -85,6 +99,7 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
       return {
         mac: b.mac,
         distance: getIBeaconDistance(ibeaconFrame.tx, b.rssi),
+        name: findBeaconName(b.mac),
       }
     }) ?? []
   const closestBeacon = nearBeacons.sort((a, b) => a.distance - b.distance)?.[0];
