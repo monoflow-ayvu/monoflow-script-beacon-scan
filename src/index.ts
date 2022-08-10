@@ -3,8 +3,6 @@ import type { BeaconData } from "react-native-beacon-scanner";
 
 declare class BeaconScanEvent extends MonoUtils.wk.event.BaseEvent {
   kind: 'beacon-scan-event';
-  beacons: BeaconData[];
-
   getData(): {beacons: BeaconData[]};
 }
 
@@ -26,6 +24,20 @@ interface NearBeacon {
   distance: number;
 };
 
+// take from: https://gist.github.com/JoostKiens/d834d8acd3a6c78324c9
+function getIBeaconDistance(txPower: number, rssi: number) {
+  if (rssi === 0) {
+    return -1; // if we cannot determine accuracy, return -1.
+  }
+
+  var ratio = rssi * 1 / txPower;
+  if (ratio < 1.0) {
+    return Math.pow(ratio, 10);
+  } else {
+    return (0.89976) * Math.pow(ratio, 7.7095) + 0.111;
+  }
+}
+
 MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
   env.project?.saveEvent(ev);
 
@@ -33,13 +45,23 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
     return;
   }
 
-  const nearBeacons: NearBeacon[] = ev.beacons
-    .filter((b) => b.frames.some((f) => f.type === 'ibeacon'))
-    .map((b) => ({
-      mac: b.mac,
-      distance: 0,
-    }))
-  const closestBeacon = nearBeacons.sort((a, b) => a.distance - b.distance)?.[0] ?? [];
+  const nearBeacons: NearBeacon[] = ev.getData()?.beacons
+    ?.filter((b) => b.frames.some((f) => f.type === 'ibeacon'))
+    ?.map((b) => {
+      const ibeaconFrame = b.frames.find((f) => f.type === 'ibeacon' as const) as never as {
+        type: 'ibeacon';
+        uuid: string;
+        major: number;
+        minor: number;
+        tx: number;
+      };
+      
+      return {
+        mac: b.mac,
+        distance: getIBeaconDistance(ibeaconFrame.tx, b.rssi),
+      }
+    }) ?? []
+  const closestBeacon = nearBeacons.sort((a, b) => a.distance - b.distance)?.[0];
   if (!closestBeacon) {
     return;
   }
