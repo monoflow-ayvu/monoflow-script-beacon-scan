@@ -69,7 +69,8 @@ describe('onEvent(beacon-scan-event)', () => {
       expect(env.data.CLOSEST_IBEACON).toStrictEqual({
         mac: "00:11:22:33:44:55",
         distance: 0.002637966120962853,
-        name: ''
+        name: '',
+        battery: 80,
       });
       console.log(env.data.CLOSEST_IBEACON)
     });

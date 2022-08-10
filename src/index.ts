@@ -23,6 +23,7 @@ interface NearBeacon {
   name?: string;
   mac: string;
   distance: number;
+  battery: number;
 };
 
 // take from: https://gist.github.com/JoostKiens/d834d8acd3a6c78324c9
@@ -100,6 +101,7 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
         mac: b.mac,
         distance: getIBeaconDistance(ibeaconFrame.tx, b.rssi),
         name: findBeaconName(b.mac) || '',
+        battery: b.battery,
       }
     }) ?? []
   const closestBeacon = nearBeacons.sort((a, b) => a.distance - b.distance)?.[0];
