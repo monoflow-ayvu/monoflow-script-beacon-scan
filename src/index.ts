@@ -65,13 +65,13 @@ function tryOpenPage(pageId: string) {
 }
 
 function getBeaconCol() {
-  return env.project?.collectionsManager.ensureExists<{mac: string; name?: string}>('beacon', 'Beacon');
+  return env.project?.collectionsManager?.ensureExists<{mac: string; name?: string}>('beacon', 'Beacon');
 }
 
 function findBeaconName(mac: string) {
   const prettyMac = mac.toLocaleUpperCase();
   const col = getBeaconCol()
-  return col.get(prettyMac).data.name;
+  return col?.get(prettyMac)?.data?.name;
 }
 
 messages.on('onInit', () => {
