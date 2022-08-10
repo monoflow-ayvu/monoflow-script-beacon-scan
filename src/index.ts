@@ -114,7 +114,10 @@ messages.on('onPeriodic', () => {
     return;
   }
 
-  const page = env.project?.pagesManager?.allPages?.find((p) => p.$modelId === pageId)
+  const page = env.project?.pagesManager?.pages?.find((p) => p.$modelId === pageId)
+  if (page.show === false) {
+    page._setRaw({show: true});
+  }
   if (!page) {
     platform.log('tags matches but page not found');
     return;
