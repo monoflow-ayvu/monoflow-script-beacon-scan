@@ -111,6 +111,10 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
 });
 
 messages.on('onPeriodic', () => {
+  if (!currentLogin()) {
+    return;
+  }
+
   if (!conf.get('enableBeaconCheck', false)) {
     return;
   }
@@ -122,10 +126,6 @@ messages.on('onPeriodic', () => {
   const pageId = conf.get('pageId', '');
   if (!pageId) {
     platform.log('tags matches but no page id provided');
-    return;
-  }
-
-  if (!currentLogin()) {
     return;
   }
 
