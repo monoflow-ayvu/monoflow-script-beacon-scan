@@ -101,7 +101,7 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
         mac: b.mac,
         distance: getIBeaconDistance(ibeaconFrame.tx, b.rssi),
         name: findBeaconName(b.mac) || '',
-        battery: b.battery,
+        battery: b.battery || -1,
       }
     }) ?? []
   const closestBeacon = nearBeacons.sort((a, b) => a.distance - b.distance)?.[0];
