@@ -1,4 +1,5 @@
 import * as MonoUtils from "@fermuch/monoutils";
+import { currentLogin, myID } from "@fermuch/monoutils";
 import type { BeaconData } from "react-native-beacon-scanner";
 
 declare class BeaconScanEvent extends MonoUtils.wk.event.BaseEvent {
@@ -38,6 +39,31 @@ function getIBeaconDistance(txPower: number, rssi: number) {
   }
 }
 
+function anyTagMatches(tags: string[]): boolean {
+  // we always match if there are no tags
+  if (!tags || tags.length === 0) return true;
+
+  const userTags = env.project?.logins?.find((login) => login.key === currentLogin())?.tags || [];
+  const deviceTags = env.project?.usersManager?.users?.find?.((u) => u.$modelId === myID())?.tags || [];
+  const allTags = [...userTags, ...deviceTags];
+
+  return tags.some((t) => allTags.includes(t));
+}
+
+function tryOpenPage(pageId: string) {
+  if (!currentLogin()) {
+    return;
+  }
+
+  if (!('goToPage' in platform)) {
+    platform.log('no goToPage platform tool available');
+    return;
+  }
+
+  platform.log(`showing page: ${pageId}`);
+  (platform as unknown as { goToPage: (pageId: string) => void })?.goToPage?.(pageId);
+}
+
 MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
   env.project?.saveEvent(ev);
 
@@ -68,3 +94,35 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
 
   env.setData('CLOSEST_IBEACON', closestBeacon);
 });
+
+messages.on('onPeriodic', () => {
+  if (!conf.get('enableBeaconCheck', false)) {
+    return;
+  }
+
+  if (!anyTagMatches(conf.get('tags', []))) {
+    return;
+  }
+
+  const pageId = conf.get('pageId', '');
+  if (!pageId) {
+    platform.log('tags matches but no page id provided');
+    return;
+  }
+
+  if (!currentLogin()) {
+    return;
+  }
+
+  const page = env.project?.pagesManager?.allPages?.find((p) => p.$modelId === pageId)
+  if (!page) {
+    platform.log('tags matches but page not found');
+    return;
+  }
+
+  const currentPage = String(env.data.CURRENT_PAGE || '');
+  if (currentPage !== page.title) {
+    tryOpenPage(pageId);
+  }
+});
+
