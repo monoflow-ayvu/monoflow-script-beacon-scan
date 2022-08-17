@@ -1,6 +1,6 @@
 {
   "name": "beacon-scan",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "description": "Escaneia e salva os metadatos dos beacons.",
   "settingsSchema": {
     "display": "form",
@@ -47,6 +47,20 @@
             "key": "pageId",
             "type": "textfield",
             "input": true
+          },
+          {
+            "label": "Filtro distância",
+            "tooltip": "Só distancias menores vão aparecer. Distancia 0 significa 'apresentar todo, indiferente da distancia'.",
+            "mask": false,
+            "tableView": false,
+            "delimiter": false,
+            "requireDecimal": false,
+            "inputFormat": "plain",
+            "truncateMultipleSpaces": false,
+            "key": "distanceFilter",
+            "type": "number",
+            "input": true,
+            "defaultValue": 0
           }
         ]
       },

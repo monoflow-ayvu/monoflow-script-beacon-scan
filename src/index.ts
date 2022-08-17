@@ -11,13 +11,10 @@ type ConfigBeaconCheck = {
   enableBeaconCheck: boolean;
   tags?: string[];
   pageId?: string;
+  distanceFilter?: number;
 }
 
-type Config =
-  ConfigBeaconCheck
-  & {};
-
-const conf = new MonoUtils.config.Config<Config>();
+const conf = new MonoUtils.config.Config<ConfigBeaconCheck>();
 
 interface NearBeacon {
   name?: string;
@@ -93,6 +90,8 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
     return;
   }
 
+  const maxDistance = conf.get('distanceFilter', 0) > 0 ? conf.get('distanceFilter', 0) : Number.MAX_SAFE_INTEGER;
+
   const nearBeacons: NearBeacon[] = ev.getData()?.beacons
     ?.filter((b) => b.frames.some((f) => f.type === 'ibeacon'))
     ?.map((b) => {
@@ -110,7 +109,8 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
         name: findBeaconName(b.mac) || '',
         battery: b.battery || -1,
       }
-    }) ?? []
+    })
+    ?.filter((b) => b.distance <= maxDistance) ?? []
   const closestBeacon = nearBeacons.sort((a, b) => a.distance - b.distance)?.[0];
   if (!closestBeacon) {
     env.setData('CLOSEST_IBEACON', null);
