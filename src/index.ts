@@ -113,6 +113,7 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
     }) ?? []
   const closestBeacon = nearBeacons.sort((a, b) => a.distance - b.distance)?.[0];
   if (!closestBeacon) {
+    env.setData('CLOSEST_IBEACON', null);
     return;
   }
 
