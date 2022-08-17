@@ -74,5 +74,12 @@ describe('onEvent(beacon-scan-event)', () => {
       });
       console.log(env.data.CLOSEST_IBEACON)
     });
+
+    xit('omits values with distanceFilter', () => {});
+    xit('CLOSEST_BEACON=null when there are no matching items in the scan', () => {});
   });
+});
+
+describe('onPeriodic()', () => {
+  xit('calls wakeup', () => {});
 });
