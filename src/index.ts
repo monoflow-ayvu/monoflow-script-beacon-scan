@@ -26,6 +26,13 @@ interface NearBeacon {
   battery: number;
 };
 
+function wakeup() {
+  if ('wakeup' in platform) {
+    (platform as unknown as { wakeup: () => void }).wakeup();
+  }
+}
+
+
 // take from: https://gist.github.com/JoostKiens/d834d8acd3a6c78324c9
 function getIBeaconDistance(txPower: number, rssi: number) {
   if (rssi === 0) {
@@ -124,6 +131,9 @@ messages.on('onPeriodic', () => {
   if (!anyTagMatches(conf.get('tags', []))) {
     return;
   }
+
+  // always keep the screen ON
+  wakeup();
 
   const pageId = conf.get('pageId', '');
   if (!pageId) {
