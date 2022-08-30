@@ -79,6 +79,28 @@ function findBeaconName(mac: string) {
   return col?.get(prettyMac)?.data?.name || '';
 }
 
+function isDifferent(beacon: NearBeacon | undefined): boolean {
+  const current = env.data.CLOSEST_BEACON as NearBeacon | undefined;
+
+  if (current && !beacon) {
+    return true;
+  }
+
+  if (!current && beacon) {
+    return true;
+  }
+
+  if (
+       current?.mac !== beacon?.mac
+    || current?.name !== beacon?.name
+    || current?.battery !== beacon?.battery
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
 messages.on('onInit', () => {
   getBeaconCol();
 });
@@ -107,17 +129,15 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
         mac: b.mac,
         distance: getIBeaconDistance(ibeaconFrame.tx, b.rssi),
         name: findBeaconName(b.mac) || '',
-        battery: b.battery || -1,
+        battery: Math.floor(b.battery || -1),
       }
     })
     ?.filter((b) => b.distance <= maxDistance) ?? []
   const closestBeacon = nearBeacons.sort((a, b) => a.distance - b.distance)?.[0];
-  if (!closestBeacon) {
-    env.setData('CLOSEST_IBEACON', null);
-    return;
+  
+  if (isDifferent(closestBeacon)) {
+    env.setData('CLOSEST_IBEACON', closestBeacon);
   }
-
-  env.setData('CLOSEST_IBEACON', closestBeacon);
 });
 
 messages.on('onPeriodic', () => {
