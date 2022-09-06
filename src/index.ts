@@ -173,7 +173,7 @@ messages.on('onPeriodic', () => {
   }
 
   const currentPage = String(env.data.CURRENT_PAGE || '');
-  if (currentPage !== page.title) {
+  if (currentPage !== 'Login' && currentPage !== page.title) {
     tryOpenPage(pageId);
   }
 });
