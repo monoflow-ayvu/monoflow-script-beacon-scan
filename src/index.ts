@@ -116,6 +116,7 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
 
   const nearBeacons: NearBeacon[] = ev.getData()?.beacons
     ?.filter((b) => b.frames.some((f) => f.type === 'ibeacon'))
+    ?.filter((b) => b.battery !== 0 && b.battery !== -1)
     ?.map((b) => {
       const ibeaconFrame = b.frames.find((f) => f.type === 'ibeacon' as const) as never as {
         type: 'ibeacon';
