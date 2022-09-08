@@ -4,6 +4,6 @@
 
 tasks:
   - init: pnpm install && pnpm run build
-    command: pnpm run watch
+    command: pnpm run build && pnpm run test
 
 
