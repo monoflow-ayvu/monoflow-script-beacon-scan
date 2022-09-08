@@ -70,7 +70,11 @@ function tryOpenPage(pageId: string) {
 }
 
 function getBeaconCol() {
-  return env.project?.collectionsManager?.ensureExists<{mac: string; name?: string}>('beacon', 'Beacon');
+  const col = env.project?.collectionsManager?.ensureExists<{mac: string; name?: string}>('beacon', 'Beacon');
+  if (col.watchAll !== true) {
+    col.setWatchAll(true);
+  }
+  return col;
 }
 
 function findBeaconName(mac: string) {
