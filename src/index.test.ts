@@ -3,6 +3,8 @@ import type { BeaconData } from "react-native-beacon-scanner";
 const read = require('fs').readFileSync;
 const join = require('path').join;
 
+jest.useFakeTimers();
+
 function loadScript() {
   // import global script
   const script = read(join(__dirname, '..', 'dist', 'bundle.js')).toString('utf-8');
@@ -24,7 +26,7 @@ class FakeBeaconScanEvent extends MonoUtils.wk.event.BaseEvent {
             uuid: "563DA3F0-A45E-4F73-9DD9-74976A3231D4"
           }
         ],
-        lastUpdate: 1660068194612,
+        lastUpdate: Date.now(),
         mac: "00:11:22:33:44:55",
         name: "Plus",
         rssi: -37
@@ -64,6 +66,8 @@ describe('onEvent(beacon-scan-event)', () => {
       })
       loadScript();
 
+      jest.setSystemTime(new Date('2020-01-01 00:00:00'));
+
       expect(env.data.CLOSEST_IBEACON).toBeFalsy();
       messages.emit('onEvent', new FakeBeaconScanEvent());
       expect(env.data.CLOSEST_IBEACON).toStrictEqual({
@@ -71,13 +75,41 @@ describe('onEvent(beacon-scan-event)', () => {
         distance: 0.002637966120962853,
         name: '',
         battery: 80,
+        when: Number(new Date('2020-01-01 00:00:00'))
       });
-      console.log(env.data.CLOSEST_IBEACON)
     });
 
     xit('omits values with distanceFilter', () => {});
     xit('CLOSEST_BEACON=null when there are no matching items in the scan', () => {});
   });
+
+  it('removes old beacon when >30 seconds have passed', () => {
+    loadScript();
+
+    jest.setSystemTime(new Date('2020-01-01 00:00:00'));
+
+    expect(env.data.CLOSEST_IBEACON).toBeFalsy();
+    messages.emit('onEvent', new FakeBeaconScanEvent());
+    expect(env.data.CLOSEST_IBEACON).toStrictEqual({
+      mac: "00:11:22:33:44:55",
+      distance: 0.002637966120962853,
+      name: '',
+      battery: 80,
+      when: Number(new Date('2020-01-01 00:00:00'))
+    });
+
+    jest.setSystemTime(new Date('2020-01-01 00:00:01'));
+    messages.emit('onPeriodic');
+    expect(env.data.CLOSEST_IBEACON).toBeTruthy();
+
+    jest.setSystemTime(new Date('2020-01-01 00:00:30'));
+    messages.emit('onPeriodic');
+    expect(env.data.CLOSEST_IBEACON).toBeTruthy();
+
+    jest.setSystemTime(new Date('2020-01-01 00:00:31'));
+    messages.emit('onPeriodic');
+    expect(env.data.CLOSEST_IBEACON).toBeFalsy();
+  })
 });
 
 describe('onPeriodic()', () => {

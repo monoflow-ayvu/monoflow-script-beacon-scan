@@ -21,6 +21,7 @@ interface NearBeacon {
   mac: string;
   distance: number;
   battery: number;
+  when: number;
 };
 
 function wakeup() {
@@ -71,8 +72,8 @@ function tryOpenPage(pageId: string) {
 
 function getBeaconCol() {
   const col = env.project?.collectionsManager?.ensureExists<{mac: string; name?: string}>('beacon', 'Beacon');
-  if (col.watchAll !== true) {
-    col.setWatchAll(true);
+  if (col?.watchAll !== true) {
+    col?.setWatchAll(true);
   }
   return col;
 }
@@ -98,11 +99,26 @@ function isDifferent(beacon: NearBeacon | undefined): boolean {
        current?.mac !== beacon?.mac
     || current?.name !== beacon?.name
     || current?.battery !== beacon?.battery
+    || current?.when !== beacon?.when
   ) {
     return true;
   }
 
   return false;
+}
+
+function maybeDeleteCurrent() {
+  const current = env.data.CLOSEST_IBEACON as NearBeacon | null;
+  if (!current || !current?.when) {
+    return;
+  }
+
+  const lastUpdate = current?.when || 0
+  const now = Date.now()
+  const diffSeconds = (now - lastUpdate) / 1000;
+  if (diffSeconds > 30) {
+    env.setData('CLOSEST_IBEACON', null)
+  }
 }
 
 messages.on('onInit', () => {
@@ -135,6 +151,7 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
         distance: getIBeaconDistance(ibeaconFrame.tx, b.rssi),
         name: findBeaconName(b.mac) || '',
         battery: Math.floor(b.battery || -1),
+        when: b.lastUpdate,
       }
     })
     ?.filter((b) => b.distance <= maxDistance) ?? []
@@ -146,6 +163,8 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
 });
 
 messages.on('onPeriodic', () => {
+  maybeDeleteCurrent();
+
   if (!currentLogin()) {
     return;
   }
