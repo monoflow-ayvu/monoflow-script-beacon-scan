@@ -12,6 +12,7 @@ type ConfigBeaconCheck = {
   tags?: string[];
   pageId?: string;
   distanceFilter?: number;
+  disableLogout?: boolean;
 }
 
 const conf = new MonoUtils.config.Config<ConfigBeaconCheck>();
@@ -125,6 +126,13 @@ messages.on('onInit', () => {
   getBeaconCol();
 });
 
+messages.on('onEnd', () => {
+  if (conf.get('disableLogout', false)) {
+    // restore drawer
+    env.setData('DRAWER_DISABLED', false);
+  }
+});
+
 MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
   env.project?.saveEvent(ev);
 
@@ -175,6 +183,10 @@ messages.on('onPeriodic', () => {
 
   if (!anyTagMatches(conf.get('tags', []))) {
     return;
+  }
+
+  if (conf.get('disableLogout', false) && env.data.DRAWER_DISABLED !== true) {
+    env.setData('DRAWER_DISABLED', true);
   }
 
   // always keep the screen ON

@@ -61,6 +61,14 @@
             "type": "number",
             "input": true,
             "defaultValue": 0
+          },
+          {
+            "label": "Deshabilitar fechamento de sessão",
+            "tableView": false,
+            "key": "disableLogout",
+            "type": "checkbox",
+            "input": true,
+            "defaultValue": false
           }
         ]
       },
