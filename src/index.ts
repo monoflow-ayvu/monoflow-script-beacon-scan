@@ -187,6 +187,8 @@ messages.on('onPeriodic', () => {
 
   if (conf.get('disableLogout', false) && env.data.DRAWER_DISABLED !== true) {
     env.setData('DRAWER_DISABLED', true);
+  } else if (conf.get('disableLogout', false) === false && env.data.DRAWER_DISABLED !== false) {
+    env.setData('DRAWER_DISABLED', false);
   }
 
   // always keep the screen ON
