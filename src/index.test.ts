@@ -13,8 +13,7 @@ function loadScript() {
 
 class FakeBeaconScanEvent extends MonoUtils.wk.event.BaseEvent {
   kind = 'beacon-scan-event' as const;
-  beacons: BeaconData[] =
-    [
+  data: BeaconData =
       {
         battery: 80,
         frames: [
@@ -26,6 +25,49 @@ class FakeBeaconScanEvent extends MonoUtils.wk.event.BaseEvent {
             uuid: "563DA3F0-A45E-4F73-9DD9-74976A3231D4"
           }
         ],
+        lastUpdate: Date.now(),
+        mac: "00:11:22:33:44:55",
+        name: "Plus",
+        rssi: -37
+      };
+
+  getData(): BeaconData {
+    return this.data
+  };
+}
+
+class FakeSingleScanDistanceEvent extends MonoUtils.wk.event.BaseEvent {
+  kind = 'beacon-scan-single-event' as const;
+  data: BeaconData =
+      {
+        battery: -1,
+        frames: [
+          {
+            major: 0,
+            minor: 0,
+            tx: -67,
+            type: "ibeacon",
+            uuid: "563DA3F0-A45E-4F73-9DD9-74976A3231D4"
+          }
+        ],
+        lastUpdate: Date.now(),
+        mac: "00:11:22:33:44:55",
+        name: "Plus",
+        rssi: -37
+      }
+
+  getData(): BeaconData {
+    return this.data
+  };
+}
+
+class FakeSingleScanBatteryEvent extends MonoUtils.wk.event.BaseEvent {
+  kind = 'beacon-scan-single-event' as const;
+  beacons: BeaconData[] =
+    [
+      {
+        battery: 80,
+        frames: [],
         lastUpdate: Date.now(),
         mac: "00:11:22:33:44:55",
         name: "Plus",
@@ -69,12 +111,13 @@ describe('onEvent(beacon-scan-event)', () => {
       jest.setSystemTime(new Date('2020-01-01 00:00:00'));
 
       expect(env.data.CLOSEST_IBEACON).toBeFalsy();
-      messages.emit('onEvent', new FakeBeaconScanEvent());
+      messages.emit('onEvent', new FakeSingleScanDistanceEvent());
+      messages.emit('onPeriodic');
       expect(env.data.CLOSEST_IBEACON).toStrictEqual({
         mac: "00:11:22:33:44:55",
         distance: 0.002637966120962853,
         name: '',
-        battery: 80,
+        battery: -1, // we did not send battery data with this update
         when: Number(new Date('2020-01-01 00:00:00'))
       });
     });
@@ -89,12 +132,13 @@ describe('onEvent(beacon-scan-event)', () => {
     jest.setSystemTime(new Date('2020-01-01 00:00:00'));
 
     expect(env.data.CLOSEST_IBEACON).toBeFalsy();
-    messages.emit('onEvent', new FakeBeaconScanEvent());
+    messages.emit('onEvent', new FakeSingleScanDistanceEvent());
+    messages.emit('onPeriodic');
     expect(env.data.CLOSEST_IBEACON).toStrictEqual({
       mac: "00:11:22:33:44:55",
       distance: 0.002637966120962853,
       name: '',
-      battery: 80,
+      battery: -1, // we did not send battery data with this update
       when: Number(new Date('2020-01-01 00:00:00'))
     });
 
