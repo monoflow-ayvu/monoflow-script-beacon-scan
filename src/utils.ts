@@ -17,7 +17,6 @@ export function tryOpenPage(pageId: string) {
     return;
   }
 
-  platform.log(`showing page: ${pageId}`);
   (platform as unknown as { goToPage: (pageId: string) => void })?.goToPage?.(pageId);
 }
 
