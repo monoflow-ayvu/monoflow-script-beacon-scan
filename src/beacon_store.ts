@@ -60,10 +60,10 @@ export class BeaconMemoryStore {
   private toNearBeacon(beacon: BeaconData): NearBeacon {
     const now = Date.now()
 
-    const distances = beacon.distanceReadings.toArray().filter((b) => (now - b.when) < MAX_TIME_MS);
+    const distances = beacon.distanceReadings.toArray(); // .filter((b) => (now - b.when) < MAX_TIME_MS);
     const distance = distances.reduce((acc, data) => (acc + data.distance), 0) / distances.length;
 
-    const batteries = beacon.batteryReadings.toArray().filter((b) => (now - b.when) < MAX_TIME_MS);
+    const batteries = beacon.batteryReadings.toArray(); // .filter((b) => (now - b.when) < MAX_TIME_MS);
     const battery = Math.floor(batteries.reduce((acc, data) => (acc + data.battery), 0) / batteries.length);
 
     return {
