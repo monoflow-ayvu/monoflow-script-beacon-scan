@@ -5,7 +5,7 @@ import { BeaconMemoryStore } from "./beacon_store";
 import { conf } from "./config";
 import { BeaconScanEvent, BeaconScanSingleEvent } from "./events";
 import { IBeaconScan, NearBeacon } from "./types";
-import { anyTagMatches, findBeaconName, getBeaconCol, isDifferent, tryOpenPage, wakeup } from "./utils";
+import { anyTagMatches, findBeaconName, getBeaconCol, isDifferent, isValidMac, tryOpenPage, wakeup } from "./utils";
 
 const beaconStore = new BeaconMemoryStore();
 
@@ -66,6 +66,11 @@ MonoUtils.wk.event.subscribe<BeaconScanSingleEvent>('beacon-scan-single-event', 
   
   const data = ev.getData();
   if (!data) return;
+
+  if (!isValidMac(data)) {
+    return;
+  }
+
   onRawDistanceUpdate(data);
   onBatteryUpdate(data);
 

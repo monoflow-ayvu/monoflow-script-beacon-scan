@@ -1,4 +1,5 @@
 import { currentLogin, myID } from "@fermuch/monoutils";
+import { BeaconData } from "react-native-beacon-scanner";
 import { NearBeacon } from "./types";
 
 export function wakeup() {
@@ -80,4 +81,19 @@ export function isDifferent(beacon: NearBeacon | undefined): boolean {
   }
 
   return false;
+}
+
+export function isValidMac(beacon: BeaconData | undefined): boolean {
+  if (!beacon) return false;
+  if (!beacon.mac) return false;
+
+  const validMatches = [
+    "AC233F", // minew
+    "90F278", // radius
+    "000479", // radius
+  ]
+
+  return validMatches.includes(
+    beacon.mac.replace(/:/g, '').toLocaleUpperCase().slice(0, 6)
+  )
 }
