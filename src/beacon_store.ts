@@ -5,7 +5,7 @@
 import { RingBuffer } from "./circular_array";
 import { BeaconBatteryReading, BeaconData, BeaconDistanceReading, NearBeacon } from "./types";
 const MAX_TIME_MS = 30 * 1000; // 30 seconds
-const MAX_BUFFER_COUNT = 15;
+const MAX_BUFFER_COUNT = 7;
 
 export class BeaconMemoryStore {
   private beacons: BeaconData[] = [];
