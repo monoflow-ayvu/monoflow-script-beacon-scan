@@ -40,7 +40,7 @@ export class BeaconMemoryStore {
       return this.beacons.push({
         mac,
         batteryReadings: new RingBuffer<BeaconBatteryReading>(MAX_BUFFER_COUNT),
-        distanceReadings: new RingBuffer<BeaconDistanceReading>(MAX_BUFFER_COUNT),
+        distanceReadings: new RingBuffer<BeaconDistanceReading>(3),
         latest: Date.now(),
       }) - 1;
     }
