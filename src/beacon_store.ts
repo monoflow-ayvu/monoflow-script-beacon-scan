@@ -14,7 +14,8 @@ export class BeaconMemoryStore {
     const nearest = this.beacons
       .filter(this.isInTime)
       .map(this.toNearBeacon)
-      .sort((a, b) => a.distance - b.distance);
+      // .sort((a, b) => a.distance - b.distance)
+      .sort((a, b) => a.distance + b.distance);
     return nearest?.[0] || null;
   }
 
