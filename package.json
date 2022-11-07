@@ -1,6 +1,6 @@
 {
   "name": "beacon-scan",
-  "version": "0.28.0",
+  "version": "0.29.0",
   "description": "Escaneia e salva os metadatos dos beacons.",
   "settingsSchema": {
     "display": "form",
