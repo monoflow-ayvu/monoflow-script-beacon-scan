@@ -19,6 +19,15 @@ export class BeaconMemoryStore {
     return nearest?.[0] || null;
   }
 
+  public getNearestN(n: number = 5): NearBeacon[] {
+    return this.beacons
+      .filter(this.isInTime)
+      .map(this.toNearBeacon)
+      // .sort((a, b) => a.distance - b.distance)
+      .sort((a, b) => a.distance + b.distance)
+      .slice(0, n);
+  }
+
   public addBatteryReading(mac: string, battery: number) {
     this.beacons[this.findIndex(mac)].batteryReadings.add({
       battery,

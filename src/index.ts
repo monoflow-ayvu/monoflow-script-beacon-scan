@@ -44,6 +44,16 @@ function onRawDistanceUpdate(beacon: BeaconData) {
 }
 
 export function maybeUpdateData() {
+  env.setData(
+    'CLOSEST_IBEACON_LIST',
+    beaconStore
+      .getNearestN(5)
+      .map((b) => ({
+        ...b,
+        name: findBeaconName(b.mac),
+      }))
+  )
+
   const current = env.data.CLOSEST_IBEACON as NearBeacon | null;
   const closestNow = beaconStore.getNearest();
 
