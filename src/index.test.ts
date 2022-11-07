@@ -26,7 +26,7 @@ class FakeBeaconScanEvent extends MonoUtils.wk.event.BaseEvent {
           }
         ],
         lastUpdate: Date.now(),
-        mac: "00:11:22:33:44:55",
+        mac: "AC:23:3F:33:44:55",
         name: "Plus",
         rssi: -37
       };
@@ -51,7 +51,7 @@ class FakeSingleScanDistanceEvent extends MonoUtils.wk.event.BaseEvent {
           }
         ],
         lastUpdate: Date.now(),
-        mac: "00:11:22:33:44:55",
+        mac: "AC:23:3F:33:44:55",
         name: "Plus",
         rssi: -37
       }
@@ -69,7 +69,7 @@ class FakeSingleScanBatteryEvent extends MonoUtils.wk.event.BaseEvent {
         battery: 80,
         frames: [],
         lastUpdate: Date.now(),
-        mac: "00:11:22:33:44:55",
+        mac: "AC:23:3F:33:44:55",
         name: "Plus",
         rssi: -37
       }
@@ -114,7 +114,7 @@ describe('onEvent(beacon-scan-event)', () => {
       messages.emit('onEvent', new FakeSingleScanDistanceEvent());
       messages.emit('onPeriodic');
       expect(env.data.CLOSEST_IBEACON).toStrictEqual({
-        mac: "00:11:22:33:44:55",
+        mac: "AC:23:3F:33:44:55",
         distance: -37,
         name: '',
         battery: -1, // we did not send battery data with this update
@@ -135,7 +135,7 @@ describe('onEvent(beacon-scan-event)', () => {
     messages.emit('onEvent', new FakeSingleScanDistanceEvent());
     messages.emit('onPeriodic');
     expect(env.data.CLOSEST_IBEACON).toStrictEqual({
-      mac: "00:11:22:33:44:55",
+      mac: "AC:23:3F:33:44:55",
       distance: -37,
       name: '',
       battery: -1, // we did not send battery data with this update
