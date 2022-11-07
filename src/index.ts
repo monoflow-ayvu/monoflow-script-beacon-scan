@@ -8,13 +8,23 @@ import { IBeaconScan, NearBeacon } from "./types";
 import { anyTagMatches, findBeaconName, getBeaconCol, getIBeaconDistance, isDifferent, tryOpenPage, wakeup } from "./utils";
 
 const beaconStore = new BeaconMemoryStore();
+let periodicTimer: NodeJS.Timer | null = null;
 
 messages.on('onInit', () => {
   // ensure collection exists and is subscribed
   getBeaconCol();
+
+  if (periodicTimer) {
+    clearInterval(periodicTimer);
+  }
+  periodicTimer = setInterval(onPeriodic, 300);
 });
 
 messages.on('onEnd', () => {
+  if (periodicTimer) {
+    clearInterval(periodicTimer);
+  }
+
   if (conf.get('disableLogout', false)) {
     // restore drawer
     env.setData('DRAWER_DISABLED', false);
@@ -74,7 +84,7 @@ MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
   env.project?.saveEvent(ev);
 });
 
-messages.on('onPeriodic', () => {
+function onPeriodic() {
   maybeUpdateData();
 
   if (!currentLogin()) {
@@ -117,5 +127,6 @@ messages.on('onPeriodic', () => {
   if (currentPage !== 'Login' && currentPage !== page.title) {
     tryOpenPage(pageId);
   }
-});
+};
 
+messages.on('onPeriodic', onPeriodic);
