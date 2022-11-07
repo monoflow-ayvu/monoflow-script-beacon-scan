@@ -115,7 +115,7 @@ describe('onEvent(beacon-scan-event)', () => {
       messages.emit('onPeriodic');
       expect(env.data.CLOSEST_IBEACON).toStrictEqual({
         mac: "00:11:22:33:44:55",
-        distance: 0.002637966120962853,
+        distance: -37,
         name: '',
         battery: -1, // we did not send battery data with this update
         when: Number(new Date('2020-01-01 00:00:00'))
@@ -136,7 +136,7 @@ describe('onEvent(beacon-scan-event)', () => {
     messages.emit('onPeriodic');
     expect(env.data.CLOSEST_IBEACON).toStrictEqual({
       mac: "00:11:22:33:44:55",
-      distance: 0.002637966120962853,
+      distance: -37,
       name: '',
       battery: -1, // we did not send battery data with this update
       when: Number(new Date('2020-01-01 00:00:00'))

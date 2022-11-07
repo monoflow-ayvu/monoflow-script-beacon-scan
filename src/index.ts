@@ -5,7 +5,7 @@ import { BeaconMemoryStore } from "./beacon_store";
 import { conf } from "./config";
 import { BeaconScanEvent, BeaconScanSingleEvent } from "./events";
 import { IBeaconScan, NearBeacon } from "./types";
-import { anyTagMatches, findBeaconName, getBeaconCol, getIBeaconDistance, isDifferent, tryOpenPage, wakeup } from "./utils";
+import { anyTagMatches, findBeaconName, getBeaconCol, isDifferent, tryOpenPage, wakeup } from "./utils";
 
 const beaconStore = new BeaconMemoryStore();
 
@@ -27,17 +27,20 @@ function onBatteryUpdate(beacon: BeaconData) {
   }
 }
 
-function onDistanceUpdate(beacon: BeaconData, ibeacon: IBeaconScan) {
-  const minDistance = 0.0000000001;
-  const maxDistance =
-    conf.get('distanceFilter', 0) > 0
-      ? conf.get('distanceFilter', 0)
-      : Number.MAX_SAFE_INTEGER;
-  
-  const distance = getIBeaconDistance(ibeacon.tx, beacon.rssi);
-  if (distance > minDistance && distance < maxDistance) {
-    beaconStore.addDistanceReading(beacon.mac, distance);
-  }
+// function onDistanceUpdate(beacon: BeaconData, ibeacon: IBeaconScan) {
+//   const minDistance = 0.0000000001;
+//   const maxDistance =
+//     conf.get('distanceFilter', 0) > 0
+//       ? conf.get('distanceFilter', 0)
+//       : Number.MAX_SAFE_INTEGER;
+//   const distance = getIBeaconDistance(ibeacon.tx, beacon.rssi);
+//   if (distance > minDistance && distance < maxDistance) {
+//     beaconStore.addDistanceReading(beacon.mac, distance);
+//   }
+// }
+
+function onRawDistanceUpdate(beacon: BeaconData) {
+  beaconStore.addDistanceReading(beacon.mac, beacon.rssi);
 }
 
 export function maybeUpdateData() {
@@ -63,11 +66,12 @@ MonoUtils.wk.event.subscribe<BeaconScanSingleEvent>('beacon-scan-single-event', 
   
   const data = ev.getData();
   if (!data) return;
+  onRawDistanceUpdate(data);
   onBatteryUpdate(data);
 
-  const ibeaconFrame = data.frames?.find((f) => f.type === 'ibeacon') as IBeaconScan | undefined;
-  if (!ibeaconFrame) return;
-  onDistanceUpdate(data, ibeaconFrame);
+  // const ibeaconFrame = data.frames?.find((f) => f.type === 'ibeacon') as IBeaconScan | undefined;
+  // if (!ibeaconFrame) return;
+  // onDistanceUpdate(data, ibeaconFrame);
 });
 
 MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
