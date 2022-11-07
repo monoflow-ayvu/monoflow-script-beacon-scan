@@ -47,7 +47,7 @@ export function maybeUpdateData() {
   env.setData(
     'CLOSEST_IBEACON_LIST',
     beaconStore
-      .getNearestN(5)
+      .getNearestN(10)
       .map((b) => ({
         ...b,
         name: findBeaconName(b.mac),
