@@ -23,6 +23,7 @@ export class BeaconMemoryStore {
       battery,
       when: Date.now(),
     })
+    this.beacons[this.findIndex(mac)].latest = Date.now();
   }
 
   public addDistanceReading(mac: string, distance: number) {
@@ -30,6 +31,7 @@ export class BeaconMemoryStore {
       distance,
       when: Date.now(),
     });
+    this.beacons[this.findIndex(mac)].latest = Date.now();
   }
 
   private findIndex(mac: string) {
