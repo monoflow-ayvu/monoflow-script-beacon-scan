@@ -90,7 +90,9 @@ MonoUtils.wk.event.subscribe<BeaconScanSingleEvent>('beacon-scan-single-event', 
 });
 
 MonoUtils.wk.event.subscribe<BeaconScanEvent>('beacon-scan-event', (ev) => {
-  env.project?.saveEvent(ev);
+  if (ev?.getData?.()?.beacons?.length > 0) {
+    env.project?.saveEvent(ev);
+  }
 });
 
 messages.on('onPeriodic', () => {
