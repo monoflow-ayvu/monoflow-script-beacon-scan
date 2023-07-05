@@ -7,10 +7,10 @@ settings:
 dependencies:
   '@fermuch/monoutils':
     specifier: 0.2.0
-    version: 0.2.0(cross-fetch@3.1.8)(mobx-keystone@1.6.2)(mobx@6.9.0)
+    version: 0.2.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.0)
   '@fermuch/telematree':
     specifier: 11.10.0
-    version: 11.10.0(cross-fetch@3.1.8)(mobx-keystone@1.6.2)(mobx@6.9.0)
+    version: 11.10.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.0)
   cross-fetch:
     specifier: 3.1.8
     version: 3.1.8
@@ -86,8 +86,8 @@ devDependencies:
     specifier: 29.6.0
     version: 29.6.0(@types/node@18.16.19)
   mobx-keystone:
-    specifier: 1.6.2
-    version: 1.6.2(mobx@6.9.0)
+    specifier: 1.6.3
+    version: 1.6.3(mobx@6.9.0)
   react-native-beacon-scanner:
     specifier: 1.8.0
     version: 1.8.0(react-native@0.71.4)(react@17.0.2)
@@ -1643,10 +1643,10 @@ packages:
     engines: {node: '>=10.0.0'}
     dev: true
 
-  /@fermuch/monoutils@0.2.0(cross-fetch@3.1.8)(mobx-keystone@1.6.2)(mobx@6.9.0):
+  /@fermuch/monoutils@0.2.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.0):
     resolution: {integrity: sha512-bbeNmaCiIJRdQYP8IsAQJ2qMFZTnLxyCidtSOO+0RgbaGqYXL1xoKlXMiX3FzNWrgBkftfZuD+o013ORahHNBA==}
     dependencies:
-      '@fermuch/telematree': 9.23.0(cross-fetch@3.1.8)(mobx-keystone@1.6.2)(mobx@6.9.0)
+      '@fermuch/telematree': 9.23.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.0)
       typed-emitter: 2.1.0
     transitivePeerDependencies:
       - cross-fetch
@@ -1655,7 +1655,7 @@ packages:
       - mobx-keystone
     dev: false
 
-  /@fermuch/telematree@11.10.0(cross-fetch@3.1.8)(mobx-keystone@1.6.2)(mobx@6.9.0):
+  /@fermuch/telematree@11.10.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.0):
     resolution: {integrity: sha512-rtYJKLAanNo5kxsYR8+OBHxBD7fmR0AjvdBS2f/SBDfnAGvkUWL0Trmu69UQZoPwi9F+QRgtin0dYxI/eSGKBA==}
     peerDependencies:
       cross-fetch: ^3.1.5
@@ -1670,14 +1670,14 @@ packages:
       formiojs: 4.14.8
       imurmurhash: 0.1.4
       mobx: 6.9.0
-      mobx-keystone: 1.6.2(mobx@6.9.0)
+      mobx-keystone: 1.6.3(mobx@6.9.0)
       pure-uuid: 1.6.2
       typed-emitter: 2.1.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@fermuch/telematree@9.23.0(cross-fetch@3.1.8)(mobx-keystone@1.6.2)(mobx@6.9.0):
+  /@fermuch/telematree@9.23.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.0):
     resolution: {integrity: sha512-lsKuzVtnsutsgUvCG/LHTnq29MFvT5nkKDYZ1Tr50Q5SmxTZN4NrsvIzoiGbOovPg6u64xGsdqsmRFFPOZNdMA==}
     peerDependencies:
       cross-fetch: ^3.1.5
@@ -1693,7 +1693,7 @@ packages:
       imurmurhash: 0.1.4
       lodash: 4.17.21
       mobx: 6.9.0
-      mobx-keystone: 1.6.2(mobx@6.9.0)
+      mobx-keystone: 1.6.3(mobx@6.9.0)
       pure-uuid: 1.6.2
       typed-emitter: 2.1.0
     transitivePeerDependencies:
@@ -2250,17 +2250,7 @@ packages:
     resolution: {integrity: sha512-LIDZyZgnZss7uikvBKBB/USWwG+GO8+GnwRWT+YkCGDGsqLQlhm9BC3z6+7+eMs1kUlvXQIWEzBR8Q2Pnvx6lg==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
-      '@jest/types': 29.5.0
-    dev: true
-
-  /@jest/environment@29.5.0:
-    resolution: {integrity: sha512-5FXw2+wD29YU1d4I2htpRX7jYnAyTRjP2CsXQdo9SAM8g3ifxWPSV0HnClSn71xwctr0U3oZIIH+dtbfmnbXVQ==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    dependencies:
-      '@jest/fake-timers': 29.5.0
-      '@jest/types': 29.5.0
-      '@types/node': 18.16.19
-      jest-mock: 29.5.0
+      '@jest/types': 29.6.0
     dev: true
 
   /@jest/environment@29.6.0:
@@ -2295,18 +2285,6 @@ packages:
       jest-snapshot: 29.6.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@jest/fake-timers@29.5.0:
-    resolution: {integrity: sha512-9ARvuAAQcBwDAqOnglWq2zwNIRUDtk/SCkp/ToGEhFv5r86K21l+VEs0qNTaXtyiY0lEePl3kylijSYJQqdbDg==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    dependencies:
-      '@jest/types': 29.5.0
-      '@sinonjs/fake-timers': 10.0.2
-      '@types/node': 18.16.19
-      jest-message-util: 29.5.0
-      jest-mock: 29.5.0
-      jest-util: 29.5.0
     dev: true
 
   /@jest/fake-timers@29.6.0:
@@ -6121,18 +6099,6 @@ packages:
       pretty-format: 29.6.0
     dev: true
 
-  /jest-environment-node@29.5.0:
-    resolution: {integrity: sha512-ExxuIK/+yQ+6PRGaHkKewYtg6hto2uGCgvKdb2nfJfKXgZ17DfXjvbZ+jA1Qt9A8EQSfPnt5FKIfnOO3u1h9qw==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    dependencies:
-      '@jest/environment': 29.5.0
-      '@jest/fake-timers': 29.5.0
-      '@jest/types': 29.5.0
-      '@types/node': 18.16.19
-      jest-mock: 29.5.0
-      jest-util: 29.5.0
-    dev: true
-
   /jest-environment-node@29.6.0:
     resolution: {integrity: sha512-BOf5Q2/nFCdBOnyBM5c5/6DbdQYgc+0gyUQ8l8qhUAB8O7pM+4QJXIXJsRZJaxd5SHV6y5VArTVhOfogoqcP8Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -6230,15 +6196,6 @@ packages:
       pretty-format: 29.6.0
       slash: 3.0.0
       stack-utils: 2.0.5
-    dev: true
-
-  /jest-mock@29.5.0:
-    resolution: {integrity: sha512-GqOzvdWDE4fAV2bWQLQCkujxYWL7RxjCnj71b5VhDAGOevB3qj3Ovg26A5NI84ZpODxyzaozXLOh2NCgkbvyaw==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    dependencies:
-      '@jest/types': 29.5.0
-      '@types/node': 18.16.19
-      jest-util: 29.5.0
     dev: true
 
   /jest-mock@29.6.0:
@@ -7289,8 +7246,8 @@ packages:
       minimist: 1.2.6
     dev: true
 
-  /mobx-keystone@1.6.2(mobx@6.9.0):
-    resolution: {integrity: sha512-z0o+z89Htsuv8k5VyrRwzoM7raZgGOnuimArP4ut8DA10nbRuyQ8W5vdf0jDK966KideF06r3GfADa7sQhhL3g==}
+  /mobx-keystone@1.6.3(mobx@6.9.0):
+    resolution: {integrity: sha512-z1B7cfot63Dg4O75z8Y9uVXSb7eup3Q7q8NXxQKxqJQ1MEwXOYdVCusk7RUeWexN1dCwO1g0FSWSFMURyXsv/w==}
     peerDependencies:
       mobx: ^6.0.0 || ^5.0.0 || ^4.0.0
     dependencies:
@@ -8049,7 +8006,7 @@ packages:
       deprecated-react-native-prop-types: 3.0.1
       event-target-shim: 5.0.1
       invariant: 2.2.4
-      jest-environment-node: 29.5.0
+      jest-environment-node: 29.6.0
       jsc-android: 250231.0.0
       memoize-one: 5.2.1
       metro-react-native-babel-transformer: 0.73.8(@babel/core@7.22.6)
