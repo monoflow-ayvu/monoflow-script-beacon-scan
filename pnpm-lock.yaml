@@ -92,8 +92,8 @@ devDependencies:
     specifier: 1.8.0
     version: 1.8.0(react-native@0.71.4)(react@17.0.2)
   semver:
-    specifier: 7.5.3
-    version: 7.5.3
+    specifier: 7.5.4
+    version: 7.5.4
   size-limit:
     specifier: 8.2.6
     version: 8.2.6
@@ -2519,7 +2519,7 @@ packages:
       globby: 11.1.0
       inquirer: 7.3.3
       log-symbols: 4.1.0
-      semver: 7.5.3
+      semver: 7.5.4
     dev: true
 
   /@nicolo-ribaudo/semver-v6@6.3.3:
@@ -6333,7 +6333,7 @@ packages:
       jest-util: 29.6.1
       natural-compare: 1.4.0
       pretty-format: 29.6.1
-      semver: 7.5.3
+      semver: 7.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -8381,6 +8381,14 @@ packages:
       lru-cache: 6.0.0
     dev: true
 
+  /semver@7.5.4:
+    resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      lru-cache: 6.0.0
+    dev: true
+
   /send@0.18.0:
     resolution: {integrity: sha512-qqWzuOjSFOuqPjFe4NOsMLafToQQwBSOEpS+FwEt3A2V3vKubTquT3vmLTQpFgMXp8AlFWFuP1qKaJZOtPpVXg==}
     engines: {node: '>= 0.8.0'}
@@ -9000,7 +9008,7 @@ packages:
       chalk: 4.1.2
       enhanced-resolve: 5.15.0
       micromatch: 4.0.5
-      semver: 7.5.3
+      semver: 7.5.4
       typescript: 4.9.5
       webpack: 5.88.1(webpack-cli@5.1.4)
     dev: true
