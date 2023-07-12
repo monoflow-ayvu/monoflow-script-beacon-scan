@@ -7,10 +7,10 @@ settings:
 dependencies:
   '@fermuch/monoutils':
     specifier: 0.2.0
-    version: 0.2.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.0)
+    version: 0.2.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.1)
   '@fermuch/telematree':
     specifier: 11.10.0
-    version: 11.10.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.0)
+    version: 11.10.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.1)
   cross-fetch:
     specifier: 3.1.8
     version: 3.1.8
@@ -21,8 +21,8 @@ dependencies:
     specifier: 4.17.21
     version: 4.17.21
   mobx:
-    specifier: 6.9.0
-    version: 6.9.0
+    specifier: 6.9.1
+    version: 6.9.1
 
 devDependencies:
   '@babel/core':
@@ -87,7 +87,7 @@ devDependencies:
     version: 29.6.1(@types/node@18.16.19)
   mobx-keystone:
     specifier: 1.6.3
-    version: 1.6.3(mobx@6.9.0)
+    version: 1.6.3(mobx@6.9.1)
   react-native-beacon-scanner:
     specifier: 1.8.0
     version: 1.8.0(react-native@0.71.4)(react@17.0.2)
@@ -128,11 +128,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/highlight': 7.22.5
-    dev: true
-
-  /@babel/compat-data@7.22.6:
-    resolution: {integrity: sha512-29tfsWTq2Ftu7MXmimyC0C5FDZv5DYxOZkh3XD3+QW4V/BYuv/LyEsjj3c0hqedEaDt6DBfDvexMKU8YevdqFg==}
-    engines: {node: '>=6.9.0'}
     dev: true
 
   /@babel/compat-data@7.22.9:
@@ -197,20 +192,6 @@ packages:
       '@babel/types': 7.22.5
     dev: true
 
-  /@babel/helper-compilation-targets@7.22.6(@babel/core@7.22.9):
-    resolution: {integrity: sha512-534sYEqWD9VfUm3IPn2SLcH4Q3P86XL+QvqdC7ZsFrzyyPF3T4XGiVghF6PTYNdWg6pXuoqXxNQAhbYeEInTzA==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0
-    dependencies:
-      '@babel/compat-data': 7.22.6
-      '@babel/core': 7.22.9
-      '@babel/helper-validator-option': 7.22.5
-      '@nicolo-ribaudo/semver-v6': 6.3.3
-      browserslist: 4.21.9
-      lru-cache: 5.1.1
-    dev: true
-
   /@babel/helper-compilation-targets@7.22.9(@babel/core@7.22.9):
     resolution: {integrity: sha512-7qYrNM6HjpnPHJbopxmb8hSPoZ0gsX8IvUS32JGVoy+pU9e5N0nLr1VjJoR6kA4d9dmGLxNYOjeB8sUDal2WMw==}
     engines: {node: '>=6.9.0'}
@@ -263,12 +244,12 @@ packages:
       '@babel/core': ^7.4.0-0
     dependencies:
       '@babel/core': 7.22.9
-      '@babel/helper-compilation-targets': 7.22.6(@babel/core@7.22.9)
+      '@babel/helper-compilation-targets': 7.22.9(@babel/core@7.22.9)
       '@babel/helper-plugin-utils': 7.22.5
       debug: 4.3.4
       lodash.debounce: 4.0.8
       resolve: 1.22.1
-      semver: 6.3.0
+      semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -547,9 +528,9 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/compat-data': 7.22.6
+      '@babel/compat-data': 7.22.9
       '@babel/core': 7.22.9
-      '@babel/helper-compilation-targets': 7.22.6(@babel/core@7.22.9)
+      '@babel/helper-compilation-targets': 7.22.9(@babel/core@7.22.9)
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.22.9)
       '@babel/plugin-transform-parameters': 7.22.5(@babel/core@7.22.9)
@@ -1345,7 +1326,7 @@ packages:
       babel-plugin-polyfill-corejs2: 0.3.3(@babel/core@7.22.9)
       babel-plugin-polyfill-corejs3: 0.6.0(@babel/core@7.22.9)
       babel-plugin-polyfill-regenerator: 0.4.1(@babel/core@7.22.9)
-      semver: 6.3.0
+      semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1660,10 +1641,10 @@ packages:
     engines: {node: '>=10.0.0'}
     dev: true
 
-  /@fermuch/monoutils@0.2.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.0):
+  /@fermuch/monoutils@0.2.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.1):
     resolution: {integrity: sha512-bbeNmaCiIJRdQYP8IsAQJ2qMFZTnLxyCidtSOO+0RgbaGqYXL1xoKlXMiX3FzNWrgBkftfZuD+o013ORahHNBA==}
     dependencies:
-      '@fermuch/telematree': 9.23.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.0)
+      '@fermuch/telematree': 9.23.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.1)
       typed-emitter: 2.1.0
     transitivePeerDependencies:
       - cross-fetch
@@ -1672,7 +1653,7 @@ packages:
       - mobx-keystone
     dev: false
 
-  /@fermuch/telematree@11.10.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.0):
+  /@fermuch/telematree@11.10.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.1):
     resolution: {integrity: sha512-rtYJKLAanNo5kxsYR8+OBHxBD7fmR0AjvdBS2f/SBDfnAGvkUWL0Trmu69UQZoPwi9F+QRgtin0dYxI/eSGKBA==}
     peerDependencies:
       cross-fetch: ^3.1.5
@@ -1686,15 +1667,15 @@ packages:
       fflate: 0.7.3
       formiojs: 4.14.8
       imurmurhash: 0.1.4
-      mobx: 6.9.0
-      mobx-keystone: 1.6.3(mobx@6.9.0)
+      mobx: 6.9.1
+      mobx-keystone: 1.6.3(mobx@6.9.1)
       pure-uuid: 1.6.2
       typed-emitter: 2.1.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@fermuch/telematree@9.23.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.0):
+  /@fermuch/telematree@9.23.0(cross-fetch@3.1.8)(mobx-keystone@1.6.3)(mobx@6.9.1):
     resolution: {integrity: sha512-lsKuzVtnsutsgUvCG/LHTnq29MFvT5nkKDYZ1Tr50Q5SmxTZN4NrsvIzoiGbOovPg6u64xGsdqsmRFFPOZNdMA==}
     peerDependencies:
       cross-fetch: ^3.1.5
@@ -1709,8 +1690,8 @@ packages:
       formiojs: 4.14.8
       imurmurhash: 0.1.4
       lodash: 4.17.21
-      mobx: 6.9.0
-      mobx-keystone: 1.6.3(mobx@6.9.0)
+      mobx: 6.9.1
+      mobx-keystone: 1.6.3(mobx@6.9.1)
       pure-uuid: 1.6.2
       typed-emitter: 2.1.0
     transitivePeerDependencies:
@@ -2631,7 +2612,7 @@ packages:
       node-stream-zip: 1.15.0
       ora: 5.4.1
       prompts: 2.4.2
-      semver: 6.3.0
+      semver: 6.3.1
       strip-ansi: 5.2.0
       sudo-prompt: 9.2.1
       wcwidth: 1.0.1
@@ -2740,7 +2721,7 @@ packages:
       node-fetch: 2.6.12
       open: 6.4.0
       ora: 5.4.1
-      semver: 6.3.0
+      semver: 6.3.1
       shell-quote: 1.8.0
     transitivePeerDependencies:
       - encoding
@@ -2773,7 +2754,7 @@ packages:
       fs-extra: 8.1.0
       graceful-fs: 4.2.10
       prompts: 2.4.2
-      semver: 6.3.0
+      semver: 6.3.1
     transitivePeerDependencies:
       - '@babel/core'
       - bufferutil
@@ -3539,10 +3520,10 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/compat-data': 7.22.6
+      '@babel/compat-data': 7.22.9
       '@babel/core': 7.22.9
       '@babel/helper-define-polyfill-provider': 0.3.3(@babel/core@7.22.9)
-      semver: 6.3.0
+      semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -6993,7 +6974,7 @@ packages:
     resolution: {integrity: sha512-r9NeiqMngmooX2VOKLJVQrMuV7PAydbqst5bFhdVBPcFpZkxxqyzjzo+kzrszGy2UpSQBZr2P1L6OMjLHwQwfQ==}
     dependencies:
       '@babel/core': 7.22.9
-      '@babel/generator': 7.22.7
+      '@babel/generator': 7.22.9
       '@babel/template': 7.22.5
       '@babel/traverse': 7.22.8
       nullthrows: 1.1.1
@@ -7005,7 +6986,7 @@ packages:
     resolution: {integrity: sha512-Rq4b489sIaTUENA+WCvtu9yvlT/C6zFMWhU4sq+97W29Zj0mPBjdk+qGT5n1ZBgtBIJzZWt1KxeYuc17f4aYtQ==}
     dependencies:
       '@babel/core': 7.22.9
-      '@babel/generator': 7.22.7
+      '@babel/generator': 7.22.9
       '@babel/parser': 7.22.7
       '@babel/types': 7.22.5
       babel-preset-fbjs: 3.4.0(@babel/core@7.22.9)
@@ -7030,7 +7011,7 @@ packages:
     dependencies:
       '@babel/code-frame': 7.22.5
       '@babel/core': 7.22.9
-      '@babel/generator': 7.22.7
+      '@babel/generator': 7.22.9
       '@babel/parser': 7.22.7
       '@babel/template': 7.22.5
       '@babel/traverse': 7.22.8
@@ -7178,18 +7159,18 @@ packages:
       minimist: 1.2.6
     dev: true
 
-  /mobx-keystone@1.6.3(mobx@6.9.0):
+  /mobx-keystone@1.6.3(mobx@6.9.1):
     resolution: {integrity: sha512-z1B7cfot63Dg4O75z8Y9uVXSb7eup3Q7q8NXxQKxqJQ1MEwXOYdVCusk7RUeWexN1dCwO1g0FSWSFMURyXsv/w==}
     peerDependencies:
       mobx: ^6.0.0 || ^5.0.0 || ^4.0.0
     dependencies:
       fast-deep-equal: 3.1.3
-      mobx: 6.9.0
+      mobx: 6.9.1
       ts-toolbelt: 9.6.0
       tslib: 2.6.0
 
-  /mobx@6.9.0:
-    resolution: {integrity: sha512-HdKewQEREEJgsWnErClfbFoVebze6rGazxFLU/XUyrII8dORfVszN1V0BMRnQSzcgsNNtkX8DHj3nC6cdWE9YQ==}
+  /mobx@6.9.1:
+    resolution: {integrity: sha512-7V41hvBmzCQg5n/xoZi2qkhREbnF3wHbzbIdR1sLJhVt6yWq2Zq0FlNahEt/RccOmEIjipvBqeQ4mlOEyMhaaA==}
 
   /moment-timezone@0.5.34:
     resolution: {integrity: sha512-3zAEHh2hKUs3EXLESx/wsgw6IQdusOT8Bxm3D9UrHPQR7zlMmzwybC8zHEM1tQ4LJwP7fcxrWr8tuBg05fFCbg==}
