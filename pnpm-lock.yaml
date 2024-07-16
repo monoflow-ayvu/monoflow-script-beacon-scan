@@ -55,8 +55,8 @@ importers:
         specifier: 29.5.12
         version: 29.5.12
       '@types/lodash':
-        specifier: 4.17.6
-        version: 4.17.6
+        specifier: 4.17.7
+        version: 4.17.7
       '@types/node':
         specifier: 20.14.10
         version: 20.14.10
@@ -1510,8 +1510,8 @@ packages:
   '@types/json-schema@7.0.11':
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
 
-  '@types/lodash@4.17.6':
-    resolution: {integrity: sha512-OpXEVoCKSS3lQqjx9GGGOapBeuW5eUboYHRlHP9urXPX25IKZ6AnP5ZRxtVf63iieUbsHxLn8NQ5Nlftc6yzAA==}
+  '@types/lodash@4.17.7':
+    resolution: {integrity: sha512-8wTvZawATi/lsmNu10/j2hk1KEP0IvjubqPE3cu1Xz7xfXXt5oCq3SNUz4fMIP4XGF9Ky+Ue2tBA3hcS7LSBlA==}
 
   '@types/long@4.0.2':
     resolution: {integrity: sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==}
@@ -5852,7 +5852,7 @@ snapshots:
       '@babel/helper-module-imports': 7.24.7
       '@babel/helper-plugin-utils': 7.24.8
       '@babel/plugin-syntax-jsx': 7.24.7(@babel/core@7.24.9)
-      '@babel/types': 7.24.8
+      '@babel/types': 7.24.9
     transitivePeerDependencies:
       - supports-color
 
@@ -7219,7 +7219,7 @@ snapshots:
 
   '@types/json-schema@7.0.11': {}
 
-  '@types/lodash@4.17.6': {}
+  '@types/lodash@4.17.7': {}
 
   '@types/long@4.0.2': {}
 
@@ -9899,7 +9899,7 @@ snapshots:
   metro-source-map@0.73.8:
     dependencies:
       '@babel/traverse': 7.24.8
-      '@babel/types': 7.24.8
+      '@babel/types': 7.24.9
       invariant: 2.2.4
       metro-symbolicate: 0.73.8
       nullthrows: 1.1.1
@@ -9912,7 +9912,7 @@ snapshots:
   metro-source-map@0.73.9:
     dependencies:
       '@babel/traverse': 7.24.8
-      '@babel/types': 7.24.8
+      '@babel/types': 7.24.9
       invariant: 2.2.4
       metro-symbolicate: 0.73.9
       nullthrows: 1.1.1
@@ -9947,7 +9947,7 @@ snapshots:
   metro-transform-plugins@0.73.9:
     dependencies:
       '@babel/core': 7.24.9
-      '@babel/generator': 7.24.8
+      '@babel/generator': 7.24.9
       '@babel/template': 7.24.7
       '@babel/traverse': 7.24.8
       nullthrows: 1.1.1
@@ -9957,9 +9957,9 @@ snapshots:
   metro-transform-worker@0.73.9:
     dependencies:
       '@babel/core': 7.24.9
-      '@babel/generator': 7.24.8
+      '@babel/generator': 7.24.9
       '@babel/parser': 7.24.8
-      '@babel/types': 7.24.8
+      '@babel/types': 7.24.9
       babel-preset-fbjs: 3.4.0(@babel/core@7.24.9)
       metro: 0.73.9
       metro-babel-transformer: 0.73.9
@@ -9979,11 +9979,11 @@ snapshots:
     dependencies:
       '@babel/code-frame': 7.24.7
       '@babel/core': 7.24.9
-      '@babel/generator': 7.24.8
+      '@babel/generator': 7.24.9
       '@babel/parser': 7.24.8
       '@babel/template': 7.24.7
       '@babel/traverse': 7.24.8
-      '@babel/types': 7.24.8
+      '@babel/types': 7.24.9
       absolute-path: 0.0.0
       accepts: 1.3.8
       async: 3.2.4
